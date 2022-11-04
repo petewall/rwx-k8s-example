@@ -4,7 +4,7 @@ SHELL := /bin/bash
 
 STORAGE_CLASS ?= default
 
-deploy: deployment.yaml pvc.yaml
+deploy: daemonset.yaml pvc.yaml
 	kapp deploy --app rwx-test \
-		--file deployment.yaml \
+		--file daemonset.yaml \
 		--file <(ytt --file pvc.yaml --data-value storageClass=$(STORAGE_CLASS))
